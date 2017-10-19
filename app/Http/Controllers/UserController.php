@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\User;
 use Response;
 use Session;
@@ -17,7 +18,42 @@ class UserController extends Controller
         return view('admin.users.all', ['users' => $users]);
     }
 
-    //Edit user
+    //Edit own profile 
+    public function profileEdit()
+    {
+        return view('users.edit');
+    }
+
+    //Update own profile
+    public function profileUpdate()
+    {
+        
+        $this->validate(request(), [
+            'name'=>'required|string',
+            'email'=>'required|email',
+            'password' => 'required|min:6'
+        ]);
+
+        $user = Auth::User();
+
+        $user->name = request()->name;
+
+        $user->email = request()->email;
+
+        $user->password = bcrypt(request()->password);
+
+        $user->save();
+
+
+        Session::flash('msg', 'User updated');
+
+
+        return redirect()->back();
+
+    }
+
+    //Only admin
+
     public function edit(User $user)
     {
         return view('admin.users.edit', ['user' => $user]);
@@ -25,12 +61,13 @@ class UserController extends Controller
 
     public function update($id)
     {
-        
+
         $this->validate(request(), [
             'name'=>'required|string',
-            'email'=>'required|email'
+            'email'=>'required|email',
         ]);
 
+  
         $user = User::findOrFail($id);
 
         $user->name = request()->name;
@@ -43,14 +80,14 @@ class UserController extends Controller
         Session::flash('msg', 'User updated');
 
 
-        return redirect()->route('admin.users.all');
+        return redirect()->back();
+
 
     }
 
     public function destroy($id)
     {
         $user = User::findOrFail($id);
-
 
         $user->delete();
 
@@ -61,12 +98,17 @@ class UserController extends Controller
     }
 
 
-
-
     //Show Auth profile
     public function dashboard()
     {
         return view('users.profile');
+    }
+
+    //Get all users in logged in as user
+    public function getAllUsers() {
+        $users = User::all();
+
+        return view('users.all', ['users' => $users]);
     }
 
     //Show other users profile

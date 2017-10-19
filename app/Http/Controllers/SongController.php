@@ -40,6 +40,7 @@ class SongController extends Controller
     {
         $this->validate(request(), [
             'title'         => 'required|string',
+            'creators'      => 'required|string',
             'url'           => 'required|url',
             'description'   => 'required|string|max:200'  
         ]);
@@ -48,6 +49,7 @@ class SongController extends Controller
 
         $song->title = request()->title;
         $song->url = request()->url;
+        $song->creators = request()->creators;
         $song->description = request()->description;
 
         $song->save();
@@ -56,8 +58,17 @@ class SongController extends Controller
 
 
         return redirect()->route('admin.songs.all');
+    }
 
+    public function destroy($id) 
+    {
+        $song = Song::findOrFail($id);
 
+        $song->delete();
+
+        Session::flash('msg', "Song $song->title deleted");
+
+        return redirect()->route('admin.songs.all');
     }
 
     public function create()
@@ -96,6 +107,11 @@ class SongController extends Controller
     public function showSong(Song $song)
     {
         return view('users.songs.show')->with('song', $song);
+    }
+
+    public function userSongEdit(Song $song) 
+    {
+        return view('users.songs.edit', ['song' => $song]);
     }
 
 }

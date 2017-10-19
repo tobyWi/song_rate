@@ -14,6 +14,8 @@
             <div class="form-group">
                 <label for="title">Title</label>
                 <input type="text" name="title" value="{{$song->title}}" class="form-control" id="title">
+                <label for="creators">Creators</label>
+                <input name="creators" type="text" value="{{$song->creators}}" class="form-control">
                 <label for="url">Url</label>
                 <input type="url" name="url" id="url" class="form-control" value="{{$song->url}}">
                 <label for="description">Description</label>

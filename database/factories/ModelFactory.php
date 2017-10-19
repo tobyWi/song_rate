@@ -46,6 +46,26 @@ $factory->define(App\Song::class, function (Faker $faker) {
         'description' => $faker->text(100),
         'url' => 'https://soundcloud.com/designobserver/sets/the-design-of-business-the',
         'category_id' => $faker->numberBetween(1,3),
-        'user_id' => $faker->numberBetween(1,101)
+        'user_id' => $faker->numberBetween(1,21)
     ];
 });
+
+//Comment-factory
+$factory->define(App\Comment::class, function (Faker $faker) {
+    return [
+        'body' => $faker->sentence,
+        'user_id' => $faker->numberBetween(1,21),
+        'song_id' => $faker->numberBetween(1,100)
+    ];
+});
+
+$factory->define(App\Vote::class, function (Faker $faker) {
+    return [
+        'song_id' => $faker->numberBetween(1,100),
+        'user_id' => $faker->numberBetween(1,21),
+        'song_id' => $faker->numberBetween(1,100),
+        'vote_value' => $faker->randomElement($array = [-1, 1]),
+    ];
+});
+
+

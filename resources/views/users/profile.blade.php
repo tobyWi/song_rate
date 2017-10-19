@@ -1,11 +1,13 @@
 @extends('master')
 @section('content')
 
+<div class="row">
     <div class="col-12">
 
-        <h2>{{Auth::user()->name}}</h2>
+        <h2>{{Auth::user()->name}}</h2> 
+        <p class="text-right"><a href="{{route('user.profile.edit')}}" class="btn btn-default">Edit Profile</a></p>
 
-        Your Songs:
+        <h4>Your Songs:</h4>
 
         <table class="table table-striped">
             <thead>
@@ -27,7 +29,7 @@
                     <td>{{$song->Vote->sum('vote_value')}}</td>
                     <td>{{$song->Vote->count('vote_value')}}</td>
                     <td>{{$song->created_at}}</td>
-                    <td></td>
+                    <td><a href="{{route('user.song.edit', ['song' => $song->id])}}" class="btn btn-default">Edit</a></td>
                     
                 </tr>
 
@@ -35,5 +37,5 @@
         </table>
 
     </div>
-
+</div>
 @endsection

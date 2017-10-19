@@ -21,11 +21,11 @@
             <tbody>
                 <tr>
                     <td>{{$category->name}}</td>
-                    <td><a href=" {{route('admin.category.edit', ['id' => $category->id])}} " class="btn btn-success">Edit</a></td>
+                    <td><a href=" {{route('admin.category.edit', ['id' => $category->id])}} " class="btn btn-default">Edit</a></td>
                     <td>
                         <form action="{{route('admin.category.delete', ['id' => $category->id])}}" method="post">
-                            {{csrf_field()}}
 
+                            {{csrf_field()}}
                             {{method_field('DELETE')}}
 
                             <button type="submit" class="btn btn-danger">Delete</button>

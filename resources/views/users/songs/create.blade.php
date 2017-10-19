@@ -7,9 +7,8 @@
 <div class="col-12">
 
 
-    <form action=" {{route('song.create')}} " method="post">
+    <form action="{{route('song.create')}}" method="post">
         {{ csrf_field() }}
-       <!--  <input type="hidden" name="user_id" value="{{Auth::user()->id}}"> -->
         <div class="form-group">
             <label for="title">Title</label>
             <input type="text" name="title" placeholder="Title" class="form-control" id="title">

@@ -18,17 +18,12 @@
 
 
     <div class="col-xs-6">
-
         <table class="table vote">
-
             <thead>
-
                 <tr>        
                     <th>Vote Up</th>
-
                     <th>Vote Down</th>                
                 </tr>
-           
             </thead>
             <tbody>
                 
@@ -78,7 +73,6 @@
                     <th>Comment created</th>      
                 </thead>
 
-  
                     @foreach($song->Comment as $comment)
 
                         <tr>                  
@@ -86,12 +80,9 @@
                                 <a href="{{route('user.show', $comment->User)}}">{{$comment->User->name}}</a>
                          
                             </td>
-                            <td>
-                         
-                                {{$comment->body}}
-                         
+                            <td>                         
+                                {{$comment->body}} 
                             </td>
-                         
                             <td>                        
                                 {{$comment->created_at}}
                             </td>                       

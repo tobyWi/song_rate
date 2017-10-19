@@ -43,7 +43,7 @@ class CategoryController extends Controller
     {
         
         $this->validate(request(), [
-            'name'=>'required|string|max:10',
+            'name'=>'required|string|max:50',
         ]);
 
         $category = Category::findOrFail($id);

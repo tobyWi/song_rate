@@ -15,7 +15,6 @@
                     <tr>
                         <th>Namn</th>
                         <th>Email</th>
-                        <th>Created At</th>
                         <th></th>
                         <th></th>
 
@@ -28,17 +27,20 @@
                     <tr>
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
-                        <td>{{$user->created_at}}</td>
-                        <td><a href="{{route('admin.user.edit', ['user' => $user->id])}}" class="btn btn-success">Edit</a></td>
+                        <td><a href="{{route('admin.user.edit', ['user' => $user->id])}}" class="btn btn-default">Edit</a></td>
                         <td>
-                            <form action="{{route('admin.user.delete', ['id' => $user->id])}}" method="post">
-                                {{csrf_field()}}
 
-                                {{method_field('DELETE')}}
+                            @if(!$user->is_admin)
+                                <form action="{{route('admin.user.delete', ['id' => $user->id])}}" method="post">
+                                    {{csrf_field()}}
 
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                                    {{method_field('DELETE')}}
 
-                            </form>
+                                
+                                <button type="submit" class="btn btn-danger">Delete</button>
+
+                                </form>
+                            @endif
                         </td>
                     </tr>
 

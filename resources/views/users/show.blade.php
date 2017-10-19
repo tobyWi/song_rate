@@ -5,14 +5,16 @@
 
         <h2>{{$user->name}}</h2>
 
-        Songs:
+        <h4>Songs:</h4>
 
         <table class="table table-striped">
             
             <thead>
                 <tr>
                     <th>Title</th>
-                    <th>Created</th>
+                    <th>Composers</th>
+                    <th>Uploaded</th>
+                    <th>Score</th>
                 </tr>
             </thead>
 
@@ -22,8 +24,9 @@
                     <td><a href=" {{route('song.show', ['song' => $song->id])}} ">
                         {{$song->title}}</a>
                     </td>
+                    <td>{{$song->creators}}</td>
                     <td>{{$song->created_at}}</td>
-                    <td></td>      
+                    <td>{{$song->Vote->sum('vote_value')}}</td>      
                 </tr>
 
             @endforeach

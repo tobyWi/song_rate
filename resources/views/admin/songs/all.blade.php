@@ -21,7 +21,7 @@
                 <tr>
                     <td>{{$song->title}}</td>
                     <td>{{$song->User->name}}</td>
-                    <td><a href="{{route('admin.song.edit', ['song' => $song->id])}}">Edit</a></td>
+                    <td><a class="btn btn-default" href="{{route('admin.song.edit', ['song' => $song->id])}}">Edit</a></td>
                     <td>
                         <form action="{{route('admin.song.delete', ['id' => $song->id])}}" method="post">
                             {{csrf_field()}}

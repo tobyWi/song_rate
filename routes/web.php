@@ -20,10 +20,6 @@ Route::get('/', [
 
 Auth::routes();
 
-//Home route
-Route::get('/home', 'HomeController@index')->name('home');
-
-
 
 //Admins route
 Route::group(['prefix'=>'admin', 'middleware' =>'admin'], function () {
@@ -33,11 +29,12 @@ Route::group(['prefix'=>'admin', 'middleware' =>'admin'], function () {
     //Get all users
     Route::get('/users', 'UserController@index')->name('admin.users.all');
 
-    //Edit user
+    //Edit an user
     Route::get('/user/{user}/edit', 'UserController@edit')->name('admin.user.edit');
 
-    //Update user
-    Route::put('/user/{id}', 'UserController@update')->name('admin.user.update');
+    //Update an user
+    Route::put('/user/{id}/', 'UserController@update')->name('admin.user.update');
+
 
     //Delete user
     Route::delete('/user/{id}', 'UserController@destroy')->name('admin.user.delete');
@@ -77,10 +74,10 @@ Route::group(['prefix'=>'admin', 'middleware' =>'admin'], function () {
     Route::get('/songs', 'SongController@index')->name('admin.songs.all');
 
     //Edit song
-    Route::get('/song/{song}', 'SongController@edit')->name('admin.song.edit');
+    Route::get('/song/{song}/edit', 'SongController@edit')->name('admin.song.edit');
 
     //Update song
-    Route::put('/song/{id}/edit', 'SongController@update')->name('admin.song.update');
+    Route::put('/song/{id}/', 'SongController@update')->name('admin.song.update');
 
     //Delete song
     Route::delete('song/{id}', 'SongController@destroy')->name('admin.song.delete');
@@ -92,28 +89,50 @@ Route::group(['prefix'=>'admin', 'middleware' =>'admin'], function () {
 
 
 //Route-group for loged in users
-Route::group(['middleware' =>'auth'], function () {
+Route::group(['prefix' => 'users', 'middleware' =>'auth'], function () {
 
-    //Users profile
+
+
+    //Edit user
+    Route::get('/edit', 'UserController@profileEdit')->name('user.profile.edit');
+
+    //Update user
+    Route::put('/user/{id}', 'UserController@profileUpdate')->name('user.profile.update');
+
+
+
+    //Logged in user profile
     Route::get('/user/profile/', [
         'uses'      => 'UserController@dashboard',
         'as'        => 'user.profile'
     ]);
 
-    Route::get('user/{user}', [
+    //Show another users profile
+    Route::get('/user/{user}', [
         'uses'      => 'UserController@showUser',
         'as'        => 'user.show'
+    ]);
 
+
+    //Show all users as logged in user
+    Route::get('/all', [
+        'uses'     => 'UserController@getAllUsers',
+        'as'        => 'users.all'
     ]);
 
     //Create a new song
-    Route::get('/song/create', [
+    Route::get('/user/song/create', [
         'uses'      => 'SongController@create',
         'as'        => 'song.create'
     ]);
 
+    Route::get('/user/song/{song}/edit', [
+        'uses'     => 'SongController@userSongEdit',
+        'as'        => 'user.song.edit'
+    ]);
+
     //Save new song
-    Route::post('/song/create', [
+    Route::post('user/song/create', [
         'uses'      => 'SongController@store',
         'as'        => 'song.create'
     ]);
@@ -146,7 +165,6 @@ Route::group(['middleware' =>'auth'], function () {
 
     ]);
 });
-
 
 
 //Single Song page

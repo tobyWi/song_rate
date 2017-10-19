@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class SongsTableSeeder extends Seeder
+class VotesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class SongsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Song::class, 100)->create();
+        factory(App\Vote::class, 400)->create();
     }
 }
