@@ -11,7 +11,9 @@ use Session;
 class CommentController extends Controller
 {
 
+    //Admin
 
+    //Get all comments
     public function index() 
     {
         $comments = Comment::all();
@@ -19,7 +21,7 @@ class CommentController extends Controller
         return view('admin.comments.all', ['comments' => $comments]);
     }
 
-
+    //Delete comment
     public function destroy($id) 
     {
         $comment = Comment::findOrFail($id);
@@ -31,7 +33,9 @@ class CommentController extends Controller
         return redirect()->route('admin.comments.all');
     }
 
+    //User
 
+    //Create new comment
     public function store(Song $song)
     {
         $this->validate(request(), [

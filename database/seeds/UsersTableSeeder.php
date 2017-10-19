@@ -4,14 +4,10 @@ use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+    //Set number of users and admins to generate into users table in DB
     public function run()
     {
-        //Create the users and admins
+        //Create 1 admin and 20 users
         factory(App\User::class, 'admin', 1)->create();
         factory(App\User::class, 20)->create();
     }

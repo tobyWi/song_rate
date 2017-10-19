@@ -21,7 +21,7 @@
                     </tr>
                 </thead>
 
-
+                <!-- Loop through users -->
                 @foreach($users as $user)
 
                     <tr>
@@ -30,16 +30,16 @@
                         <td><a href="{{route('admin.user.edit', ['user' => $user->id])}}" class="btn btn-default">Edit</a></td>
                         <td>
 
+                            <!-- If user is admin, no delete -->
                             @if(!$user->is_admin)
                                 <form action="{{route('admin.user.delete', ['id' => $user->id])}}" method="post">
-                                    {{csrf_field()}}
 
+                                    {{csrf_field()}}
                                     {{method_field('DELETE')}}
 
-                                
-                                <button type="submit" class="btn btn-danger">Delete</button>
-
-                                </form>
+                             
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>                 
                             @endif
                         </td>
                     </tr>

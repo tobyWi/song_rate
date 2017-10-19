@@ -4,11 +4,8 @@ use Illuminate\Database\Seeder;
 
 class CategoriesTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+    
+    //Create three default genres into categories table
     public function run()
     {
         DB::table('categories')->insert([

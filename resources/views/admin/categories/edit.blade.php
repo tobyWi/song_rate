@@ -5,7 +5,9 @@
     
     <div class="col-xs-12">
 
+        <!-- Edit user -->
         <form action="{{route('admin.category.update', ['id' => $category->id])}}" method="post">
+            
             {{csrf_field()}}
             {{method_field('PUT')}}
 

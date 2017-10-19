@@ -18,6 +18,7 @@
                 </tr>
             </thead>
 
+            <!-- All related user songs -->
             @foreach($user->Song as $song)
 
                 <tr>

@@ -5,6 +5,7 @@
 
     <div class="col-xs-12">
         
+        <!-- Authorized user update -->
         <form action="{{route('user.profile.update', ['id' => Auth::User()->id])}}" method="post">
 
             {{csrf_field()}}

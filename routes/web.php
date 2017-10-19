@@ -126,32 +126,33 @@ Route::group(['prefix' => 'users', 'middleware' =>'auth'], function () {
         'as'        => 'song.create'
     ]);
 
+    //Edit song as user
     Route::get('/user/song/{song}/edit', [
         'uses'     => 'SongController@userSongEdit',
         'as'        => 'user.song.edit'
     ]);
 
     //Save new song
-    Route::post('user/song/create', [
+    Route::post('/user/song/create', [
         'uses'      => 'SongController@store',
         'as'        => 'song.create'
     ]);
 
 
-    Route::get('song/{song_id}/vote', [
+    Route::get('/song/{song_id}/vote', [
         'uses'      => 'VoteController@isDoubleVote',
         'as'        => 'song.vote'
     ]);
 
     //Vote song up
-    Route::get('song/{song}/vote/up', [
+    Route::get('/song/{song}/vote/up', [
         'uses'      => 'VoteController@voteUp',
         'as'        => 'song.vote.up'
     ]);
 
 
     //Vote song down
-    Route::get('song/{song}/vote/down', [
+    Route::get('/song/{song}/vote/down', [
         'uses'      => 'VoteController@voteDown',
         'as'        => 'song.vote.down'
     ]);
@@ -159,7 +160,7 @@ Route::group(['prefix' => 'users', 'middleware' =>'auth'], function () {
 
 
     //Create new comment to song
-    Route::post('song/{song}', [
+    Route::post('/song/{song}', [
         'uses'      => 'CommentController@store',
         'as'        => 'song.comment.create'
 
@@ -168,7 +169,7 @@ Route::group(['prefix' => 'users', 'middleware' =>'auth'], function () {
 
 
 //Single Song page
-Route::get('song/{song}', [
+Route::get('/song/{song}', [
     'uses'      => 'SongController@showSong',
     'as'        => 'song.show'
 ]);

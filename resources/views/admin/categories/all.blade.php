@@ -6,7 +6,6 @@
 
         <h2>Categories</h2>
 
-      
         <table class="table">
             <thead class="table-inverse">
                 <tr>
@@ -16,6 +15,7 @@
                 </tr>
             </thead>
 
+            <!-- Loop through categories -->
             @foreach($categories as $category)
 
             <tbody>
@@ -23,6 +23,8 @@
                     <td>{{$category->name}}</td>
                     <td><a href=" {{route('admin.category.edit', ['id' => $category->id])}} " class="btn btn-default">Edit</a></td>
                     <td>
+
+                        <!-- Delete user -->
                         <form action="{{route('admin.category.delete', ['id' => $category->id])}}" method="post">
 
                             {{csrf_field()}}
@@ -46,7 +48,9 @@
     
         <h4>Add Category</h4>
 
-        <form action="{{route('admin.category.create')}}" method="POST">
+        <!-- Create new user -->
+        <form action="{{route('admin.category.create')}}" method="post">
+
             {{ csrf_field() }}
 
             <div class="form-group">

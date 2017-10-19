@@ -20,7 +20,7 @@
 
             <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
                 
-                    {{-- Create logo depending on user --}}
+                   <!--  Create logo depending on user -->
 
                     @if(Auth::user() && Auth::user()->is_admin)
                         <a class="navbar-brand" href="{{ url('/') }}">
@@ -118,7 +118,8 @@
 
             <div class="container">
                 <div class="row">
-                    {{-- Get message from session --}}
+                    
+                    <!-- Get message from session -->
 
                     <div class="col-xs-12 status-message">
                         

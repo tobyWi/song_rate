@@ -20,6 +20,7 @@ class CreateVotesTable extends Migration
             $table->integer('vote_value');
             $table->timestamps();
 
+            //Remove relations on delete
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('song_id')->references('id')->on('songs')->onDelete('cascade');
         });

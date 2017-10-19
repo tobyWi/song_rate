@@ -3,18 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Song;
 use App\Category;
 use App\Comment;
-use Illuminate\Support\Facades\Auth;
 use Session;
 
 class SongController extends Controller
 {
+    //Get all song to toplist
     public function songsToplist()
     {
         $songs = Song::all();
 
+        //Sort the toplist by the total sum of the votes
         $songs = $songs->sortByDesc(function ($song) {
             return $song->Vote->sum('vote_value');
         });
@@ -22,6 +24,10 @@ class SongController extends Controller
         return view('users.songs.all', ['songs' => $songs]);
     }
 
+
+    //Admin
+
+    //Get all songs
     public function index() 
     {
 
@@ -31,11 +37,13 @@ class SongController extends Controller
 
     }
 
+    //Edit song
     public function edit(Song $song) 
     {
         return view('admin.songs.edit', ['song' => $song]);
     }
 
+    //Update song
     public function update($id)
     {
         $this->validate(request(), [
@@ -60,6 +68,7 @@ class SongController extends Controller
         return redirect()->route('admin.songs.all');
     }
 
+    //Delete song
     public function destroy($id) 
     {
         $song = Song::findOrFail($id);
@@ -71,6 +80,9 @@ class SongController extends Controller
         return redirect()->route('admin.songs.all');
     }
 
+    //User
+
+    //Create new song
     public function create()
     {
         $categories = Category::all();
@@ -78,6 +90,7 @@ class SongController extends Controller
         return view('users.songs.create')->with('categories', $categories);
     }
 
+    //Save new song
     public function store()
     {
         $this->validate(request(), [
@@ -102,16 +115,15 @@ class SongController extends Controller
         return redirect()->back();
     }
 
-
-
+    //Show song
     public function showSong(Song $song)
     {
         return view('users.songs.show')->with('song', $song);
     }
 
+    //Edit song as user
     public function userSongEdit(Song $song) 
     {
         return view('users.songs.edit', ['song' => $song]);
     }
-
 }

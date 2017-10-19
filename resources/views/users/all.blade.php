@@ -16,6 +16,7 @@
                 </tr>
             </thead>
 
+            <!-- Get all users -->
             @foreach($users as $user)
                 <tr>
                     <td><a href="{{route('user.show', ['user' => $user->id])}}">{{$user->name}}</a></td>

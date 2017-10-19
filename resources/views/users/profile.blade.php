@@ -19,7 +19,7 @@
                 </tr>
             </thead>
 
-
+            <!-- Get all related user songs -->
             @foreach(Auth::user()->Song as $song)
 
                 <tr>

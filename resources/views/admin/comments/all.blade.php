@@ -17,12 +17,15 @@
                 </tr>
             </thead>
 
+            <!-- Loop through comments -->
             @foreach($comments as $comment)
+
                 <tr>
                     <td> {{ $comment->User->name }} </td>
                     <td> {{ $comment->body }} </td>
-                    <td> <a class="btn btn-default" href="{{route('song.show', ['song' => $comment->Song->id])}}">{{ $comment->Song->title }}</a> </td>
+                    <td> <a href="{{route('song.show', ['song' => $comment->Song->id])}}">{{ $comment->Song->title }}</a></td>
                     <td>
+                        <!-- Delete comment -->
                         <form action="{{route('admin.comment.delete', ['id' => $comment->id])}}" method="post">
                             {{csrf_field()}}
 
@@ -32,6 +35,7 @@
                         </form>
                     </td>
                 </tr>
+
             @endforeach
 
         </table>

@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Support\Facades\Auth;
 class IsAdmin
 {
-    //Function to check if user is Admin or not with an OR-operator
+    //Function to check if user is Admin or not 
     public function handle($request, Closure $next)
     {
         if(!Auth::user() || !Auth::user()->is_admin) {

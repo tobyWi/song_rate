@@ -6,6 +6,7 @@
 
     <div class="col-xs-12">
 
+        <!-- Edit song -->
         <form action="{{route('admin.song.update', ['id' => $song->id])}}" method="post">
 
             {{csrf_field()}}

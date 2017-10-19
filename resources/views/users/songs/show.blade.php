@@ -61,10 +61,10 @@
         
         </form>
 
+        <!-- Check if song has any comments relations -->
         @if(count($song->Comment))
 
             <table class="table table-striped">
-
                 <thead>
                     <th>From</th>      
 
@@ -73,8 +73,8 @@
                     <th>Comment created</th>      
                 </thead>
 
+                    <!-- Get comments -->
                     @foreach($song->Comment as $comment)
-
                         <tr>                  
                             <td>
                                 <a href="{{route('user.show', $comment->User)}}">{{$comment->User->name}}</a>
@@ -87,7 +87,6 @@
                                 {{$comment->created_at}}
                             </td>                       
                         </tr>
-
                     @endforeach
 
             </table>

@@ -17,12 +17,15 @@
                 </tr>
             </thead>
 
+            <!-- Loop through songs -->
             @foreach($songs as $song)
+
                 <tr>
                     <td>{{$song->title}}</td>
                     <td>{{$song->User->name}}</td>
                     <td><a class="btn btn-default" href="{{route('admin.song.edit', ['song' => $song->id])}}">Edit</a></td>
                     <td>
+                        <!-- Delete song -->
                         <form action="{{route('admin.song.delete', ['id' => $song->id])}}" method="post">
                             {{csrf_field()}}
 
@@ -32,6 +35,7 @@
                         </form>
                     </td>
                 </tr>
+
             @endforeach
 
         </table>

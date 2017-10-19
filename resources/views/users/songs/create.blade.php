@@ -31,6 +31,7 @@
             <select class="form-control" name="category" id="category">
                 <option value="">Select genre</option>
 
+                <!-- Loop through categories -->
                 @foreach($categories as $category)
                     <option value="{{$category->id}}">{{$category->name}}</option>
                 @endforeach

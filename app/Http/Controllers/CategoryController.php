@@ -60,6 +60,7 @@ class CategoryController extends Controller
 
     }
 
+    //Delete category
     public function destroy($id)
     {
         

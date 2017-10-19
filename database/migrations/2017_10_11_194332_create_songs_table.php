@@ -23,8 +23,7 @@ class CreateSongsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->timestamps();
 
-
-
+            //Remove relations on delete
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
         });
