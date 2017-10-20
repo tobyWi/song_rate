@@ -30,7 +30,7 @@ Auth::routes();
 
 //Admins route
 Route::group(['prefix'=>'admin', 'middleware' =>'admin'], function () {
-    
+
     
     //Handle Users
 
@@ -105,6 +105,9 @@ Route::group(['prefix' => 'users', 'middleware' =>'auth'], function () {
     
     //Update user
     Route::put('/user/{id}', 'UserController@profileUpdate')->name('user.profile.update');
+
+    //Update password
+    Route::put('user/update/password', 'UserController@profileUpdatePassword')->name('user.profile.update.password');
 
     
     //Logged in user profile

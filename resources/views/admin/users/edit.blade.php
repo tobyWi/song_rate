@@ -12,12 +12,13 @@
             {{method_field('PUT')}}
 
             <div class="form-group">
-
                 <label for="name">Name</label>
                 <input type="text" name="name" value="{{$user->name}}" class="form-control" id="name">
                 <label for="email">Email</label>
                 <input type="email" name="email" value="{{$user->email}}" class="form-control" id="email">
-                <input type="checkbox" name="admin" class="form-control" value="1" {{$user->is_admin ? 'checked' : ''}}>
+                <input type="checkbox" name="admin" value="1" id="admin" {{$user->is_admin ? 'checked' : ''}}>
+                <label for="admin">Make admin</label>
+                <br />
                 <button type="submit" class="btn btn-success">Update User</button>
             </div>
         </form>

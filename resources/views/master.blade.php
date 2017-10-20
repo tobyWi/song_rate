@@ -131,6 +131,12 @@
                             <div class="alert alert-danger">
                                 {{session()->get('error')}}
                             </div>
+                        @elseif($errors->any())
+                            <div class="alert alert-danger">
+                                @foreach ($errors->all() as $error)
+                                    <p>{{$error}}</p>
+                                @endforeach
+                            </div>
                         @elseif(!Auth::user())
                             <div class="alert alert-danger">
                                 You have to login to comment or vote

@@ -105,7 +105,6 @@ class UserController extends Controller
         $this->validate(request(), [
             'name'=>'required|string',
             'email'=>'required|email',
-            'password' => 'required|min:6'
         ]);
 
         $user = Auth::User();
@@ -114,15 +113,32 @@ class UserController extends Controller
 
         $user->email = request()->email;
 
-        $user->password = bcrypt(request()->password);
-
         $user->save();
 
 
         Session::flash('msg', 'User updated');
 
-
         return redirect()->back();
+
+    }
+
+    //Update profile password with confirmation-field
+    public function profileUpdatePassword() 
+    {
+        $this->validate(request(), [
+            'new_password'=>'required|confirmed|min:6',
+        ]);
+
+        $user = Auth::User();
+
+        $user->password = bcrypt(request()->new_password);
+
+        $user->save();
+
+        Session::flash('msg', 'Your password is updated');
+
+
+        return redirect()->route('user.profile');
 
     }
 
