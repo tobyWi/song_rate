@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This an app for voting on songs. 
+App for voting on songs. 
 The original idea is to collect songs from different platforms (such as spotify, soundcloud etc...).
 As yet, only links from soundcloud has been implemented. 
 
