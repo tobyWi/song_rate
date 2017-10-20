@@ -43,6 +43,8 @@ class UserController extends Controller
 
         if(request()->admin) {
             $user->is_admin = 1;
+        } else {
+            $user->is_admin = 0;
         }
 
         $user->save();

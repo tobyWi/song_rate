@@ -30,12 +30,12 @@ a {
 .fa {
     margin-right: 10px;
 }
-.fa-thumbs-o-up {
+/*.fa-thumbs-o-up {
     color: green;
 }
 .fa-thumbs-o-down {
     color: red;
-}
+}*/
 .table.vote {
     width: 300px;
     margin-left: auto;

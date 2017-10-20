@@ -15,7 +15,14 @@
 Route::get('/', [
         'uses'  => 'SongController@songsToplist',
         'as'    => 'songs.songsToplist'
-    ]);
+]);
+
+
+//Single Song page
+Route::get('/song/{song}', [
+    'uses'      => 'SongController@showSong',
+    'as'        => 'song.show'
+]);
 
 
 Auth::routes();
@@ -23,6 +30,7 @@ Auth::routes();
 
 //Admins route
 Route::group(['prefix'=>'admin', 'middleware' =>'admin'], function () {
+    
     
     //Handle Users
 
@@ -34,7 +42,6 @@ Route::group(['prefix'=>'admin', 'middleware' =>'admin'], function () {
 
     //Update an user
     Route::put('/user/{id}/', 'UserController@update')->name('admin.user.update');
-
 
     //Delete user
     Route::delete('/user/{id}', 'UserController@destroy')->name('admin.user.delete');
@@ -92,21 +99,21 @@ Route::group(['prefix'=>'admin', 'middleware' =>'admin'], function () {
 Route::group(['prefix' => 'users', 'middleware' =>'auth'], function () {
 
 
-
     //Edit user
     Route::get('/edit', 'UserController@profileEdit')->name('user.profile.edit');
 
+    
     //Update user
     Route::put('/user/{id}', 'UserController@profileUpdate')->name('user.profile.update');
 
-
-
+    
     //Logged in user profile
     Route::get('/user/profile/', [
         'uses'      => 'UserController@dashboard',
         'as'        => 'user.profile'
     ]);
 
+    
     //Show another users profile
     Route::get('/user/{user}', [
         'uses'      => 'UserController@showUser',
@@ -120,11 +127,13 @@ Route::group(['prefix' => 'users', 'middleware' =>'auth'], function () {
         'as'        => 'users.all'
     ]);
 
+
     //Create a new song
     Route::get('/user/song/create', [
         'uses'      => 'SongController@create',
         'as'        => 'song.create'
     ]);
+
 
     //Edit song as user
     Route::get('/user/song/{song}/edit', [
@@ -132,17 +141,13 @@ Route::group(['prefix' => 'users', 'middleware' =>'auth'], function () {
         'as'        => 'user.song.edit'
     ]);
 
+
     //Save new song
     Route::post('/user/song/create', [
         'uses'      => 'SongController@store',
         'as'        => 'song.create'
     ]);
 
-
-    Route::get('/song/{song_id}/vote', [
-        'uses'      => 'VoteController@isDoubleVote',
-        'as'        => 'song.vote'
-    ]);
 
     //Vote song up
     Route::get('/song/{song}/vote/up', [
@@ -158,7 +163,6 @@ Route::group(['prefix' => 'users', 'middleware' =>'auth'], function () {
     ]);
 
 
-
     //Create new comment to song
     Route::post('/song/{song}', [
         'uses'      => 'CommentController@store',
@@ -167,9 +171,3 @@ Route::group(['prefix' => 'users', 'middleware' =>'auth'], function () {
     ]);
 });
 
-
-//Single Song page
-Route::get('/song/{song}', [
-    'uses'      => 'SongController@showSong',
-    'as'        => 'song.show'
-]);

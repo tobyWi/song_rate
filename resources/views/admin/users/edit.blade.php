@@ -17,7 +17,7 @@
                 <input type="text" name="name" value="{{$user->name}}" class="form-control" id="name">
                 <label for="email">Email</label>
                 <input type="email" name="email" value="{{$user->email}}" class="form-control" id="email">
-                <input type="checkbox" name="admin" class="form-control" value="1">
+                <input type="checkbox" name="admin" class="form-control" value="1" {{$user->is_admin ? 'checked' : ''}}>
                 <button type="submit" class="btn btn-success">Update User</button>
             </div>
         </form>

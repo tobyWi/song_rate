@@ -97,7 +97,8 @@ class SongController extends Controller
             'title'         => 'required|string',
             'creators'      => 'required|string',
             'description'   => 'required|max:200',
-            'url'           => 'required|url'
+            'url'           => 'required|url',
+            'category'      => 'required'
         ]);
 
         Song::create([
